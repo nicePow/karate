@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: karate
+
+server:
+  port: 8081
