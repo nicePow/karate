@@ -15,6 +15,11 @@ logging:
     pattern:
       console:  "[%d{yyyy-MM-dd HH:mm:ss}] [%clr(%-5level)] [%clr(%logger{36})] - %clr(%msg%n)"
 
+#스웨거 기본 경로를 설정
+springdoc:
+  swagger-ui:
+    path: /swagger
+#  use-fqn: true
 
 server:
   port: 8081
