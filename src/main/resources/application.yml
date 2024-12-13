@@ -1,9 +1,10 @@
 spring:
   application:
     name: karate
+  profiles:
+    default: local
 
 logging:
-  level:
     root: INFO
 #    jdbc.sqlonly: OFF
 #    jdbc.sqltiming: INFO
@@ -11,8 +12,9 @@ logging:
 #    jdbc.resultset: OFF
 #    jdbc.connection: OFF
 #    jdbc.resultsettable: INFO
-#  pattern:
-#    console: "[%d{yyyy-MM-dd HH:mm:ss}] [%clr(%-5level)] [%clr(%logger{36})] - %clr(%msg%n)"
+    pattern:
+      console:  "[%d{yyyy-MM-dd HH:mm:ss}] [%clr(%-5level)] [%clr(%logger{36})] - %clr(%msg%n)"
+
 
 server:
   port: 8081
