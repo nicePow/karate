@@ -5,32 +5,43 @@
     <include resource="org/springframework/boot/logging/logback/console-appender.xml" />
     <include resource="org/springframework/boot/logging/logback/file-appender.xml" />
 
-    <property name="LOG_PATH" value="logs"/>
+<!--    <property name="LOG_PATH" value="logs"/>-->
     <property name="LOG_FILE" value="${LOG_PATH}/application.log"/>
-
-<!--    이 패턴 정보가 여기 있을경우 application.yml의 패턴정보는 무시됨-->
-    <property name="CONSOLE_LOG_PATTERN" value="[%d{yyyy-MM-dd HH:mm:ss}] [%clr(%-5level)] %logger{36} - %clr(%msg%n)"/>
+<!--    <property name="LOG_FILE" value="${LOG_FILE:-${LOG_PATH:-${LOG_TEMP:-${java.io.tmpdir:-/tmp}}}/spring.log" />-->
 
 
-<!--    <appender name="FILE" class="ch.qos.logback.core.FileAppender">-->
-<!--        <file>${LOG_FILE}</file>-->
+    <!--    이 패턴 정보가 여기 있을경우 application.yml의 패턴정보는 무시됨
+        <property name="CONSOLE_LOG_PATTERN" value="[%d{yyyy-MM-dd HH:mm:ss}] [%clr(%-5level)] %logger{36} - %clr(%msg%n)"/>
+        -->
+<!--    <property name="CONSOLE_LOG_PATTERN" value="${logging.pattern.console:-%d{yyyy-MM-dd HH:mm:ss} - %msg%n}" />-->
+
+<!--    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">-->
 <!--        <encoder>-->
-<!--            <pattern>%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n</pattern>-->
+<!--            <pattern>${CONSOLE_LOG_PATTERN}</pattern>-->
 <!--        </encoder>-->
 <!--    </appender>-->
 
-<!--    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">-->
-<!--        <encoder>-->
-<!--            <pattern>[%d{yyyy-MM-dd HH:mm:ss}] [%-5level] %logger{36} - %msg%n</pattern>-->
-<!--        </encoder>-->
-<!--    </appender>-->
 
-    <root level="${LOG_LEVEL}">
-        <springProfile name="local">
+    <!--    <appender name="FILE" class="ch.qos.logback.core.FileAppender">-->
+    <!--        <file>${LOG_FILE}</file>-->
+    <!--        <encoder>-->
+    <!--            <pattern>%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n</pattern>-->
+    <!--        </encoder>-->
+    <!--    </appender>-->
+
+    <!--    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">-->
+    <!--        <encoder>-->
+    <!--            <pattern>[%d{yyyy-MM-dd HH:mm:ss}] [%-5level] %logger{36} - %msg%n</pattern>-->
+    <!--        </encoder>-->
+    <!--    </appender>-->
+
+<!--    <root level="${LOG_LEVEL}">-->
+    <root level="INFO">
+        <springProfile name="local"> <!-- application.yml 에 설정되어 있는것을 기준으로 한다.-->
             <appender-ref ref="CONSOLE"/>
         </springProfile>
         <springProfile name="dev,prod">
-            <appender-ref ref="FILE"/>
+<!--            <appender-ref ref="FILE"/>-->
         </springProfile>
 <!--        <appender-ref ref="STDOUT"/>-->
     </root>
